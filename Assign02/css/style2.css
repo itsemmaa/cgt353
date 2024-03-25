@@ -1,0 +1,126 @@
+/* PART TWO */
+
+html, body, h1, form, fieldset, legend, ol, li {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #ffffff;
+	color: #111111;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	padding: 20px;
+}
+
+h1 {
+	font-size: 28px;
+	margin-bottom: 20px;
+}
+
+form#payment {
+	background: #a0bbc6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	counter-reset: fieldsets;
+	padding: 20px;
+	width: 620px;
+}
+
+form#payment fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+
+form#payment fieldset:last-of-type {
+	margin-bottom: 0;
+}
+
+form#payment legend {
+	color: #455156;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	text-shadow: 0 1px 1px #333b3f;
+}
+
+span#progress {
+	color: #455156;
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+
+form#payment > fieldset > legend:before {
+	content: "Step " counter(fieldsets) ": ";
+	counter-increment: fieldsets;
+}
+
+form#payment ol li {
+	background: #b9cf6a;
+	background: rgba(255,255,255,.3);
+	border-color: #e3ebc3;
+	border-color: rgba(255,255,255,.6);
+	border-style: solid;
+	border-width: 2px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	line-height: 30px;
+	list-style: none;
+	padding: 5px 10px;
+	margin-bottom: 2px;
+}
+
+form#payment label {
+	float: left;
+	font-size: 13px;
+	width: 140px;
+}
+
+form#payment input:not([type=radio]),
+form#payment textarea {
+	background: #ffffff;
+	border: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	font: italic 13px Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	outline: none;
+	padding: 5px;
+	width: 400px;
+}
+
+form#payment input:not([type=submit]),
+form#payment textarea:focus {
+	background: #eaeaea;
+}
+
+form#payment button {
+	background: #333b3f;
+	border: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	border-radius: 10px;
+	color: #ffffff;
+	display: block;
+	font: 18px Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	letter-spacing: 1px;
+	margin: auto;
+	padding: 7px 25px;
+	text-shadow: 0 1px 1px #000000;
+	text-transform: uppercase;
+}
+
+form#payment button:hover {
+	background: #1e2506;
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: #ffffff;
+}

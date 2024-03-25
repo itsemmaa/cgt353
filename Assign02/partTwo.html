@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Intelligent Forms</title>
+		<link rel="stylesheet" href="css/style2.css" type="text/css" />
+		<script type="text/javascript"><!--
+		function updateProgress() {
+				var bar = document.getElementById("bar");
+				var cnt = 0;
+				if( (document.getElementById("animal").value !="Example: Dolphin") && (document.getElementById("animal").value !="") )
+					cnt++;
+				if( (document.getElementById("sport").value !="") )
+					cnt++;
+				if( (document.getElementById("color").value !="") )
+					cnt++;
+				if( document.getElementById("food").value !="")
+					cnt++;
+				if( document.getElementById("movie").value !="")
+					cnt++;
+				if( document.getElementById("song").value !="")
+					cnt++;
+				if( document.getElementById("season").value !="")
+					cnt++;
+				if( document.getElementById("firstPet").value !="")
+					cnt++;
+				if( document.getElementById("maiden").value !="")
+					cnt++;
+				if( document.getElementById("firstAddress").value !="")
+					cnt++;
+				
+				var flag = false;
+				
+				if( flag == true )
+					cnt++;
+				
+				bar.value = cnt;
+			}
+		--></script>
+	</head>
+	
+	<body>
+		<h1>Information Form</h1>
+		<div style="margin-left:190px;"><span id="progress">Progress:</span><progress value="0" max="10" id="bar"></progress><br/>&nbsp;</div>
+		<form name="payment" id="payment" action="processForm.php" method="post">
+			<fieldset>
+				<legend>Personal Favorites</legend>
+				<ol>
+					<li>
+						<label for="animal">Animal</label>
+					  <input id="animal" name="animal" type="text" placeholder="Example: Dolphin" required="required" autofocus="autofocus" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="sport">Sport</label>
+						<input id="sport" name="sport" type="text" required="required" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="color">Color</label>
+						<input id="color" name="color" type="text" required="required" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="food">Food</label>
+					  <input id="food" name="food" type="text" required="required" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="movie">Movie</label>
+						<input id="movie" name="movie" type="text" required="required" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="song">Song</label>
+						<input id="song" name="song" type="text" required="required" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="season">Season</label>
+						<input id="season" name="season" type="text" required="required" onChange="updateProgress();" />
+					</li>
+				</ol>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Password Questions</legend>
+				<ol>
+					<li>
+						<label for="firstPet">First Pet</label>
+						<input id="firstPet" name="firstPet" type="text" required="required" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="maiden">Mother's Maiden Name</label>
+						<input id="maiden" name="maiden" type="text" required="required" onChange="updateProgress();" />
+					</li>
+					<li>
+						<label for="firstAddress">First Address</label>
+						<input id="firstAddress" name="firstAddress" type="text" required="required" onChange="updateProgress();" />
+					</li>
+				</ol>
+			</fieldset>
+			<button type="button"><a href="index.html">Part 1</a></button>
+			<fieldset>
+</fieldset>
+		</form>
+	</body>
+</html>
