@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Hangman Game</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<h1>HANGMAN</h1>
+	<div id="stand">
+		<div id="box"></div>
+		<div id="pole"></div>
+		<div id="string"></div>
+	</div>
+	
+	<div id="hangman">
+		<div id="head" class="hidden"></div>
+		<div id="torso" class="hidden"></div>
+		<div id="leftArm" class="hidden"></div>
+		<div id="rightArm" class="hidden"></div>
+		<div id="leftLeg" class="hidden"></div>
+		<div id="rightLeg" class="hidden"></div>
+	</div>
+	
+	<div id="wordDisplay"></div>
+	<div id="keyboard"></div>
+	<div id="attemptsLeft"></div>
+	<div id="message"></div>
+	
+	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			const words = ['hangman', 'purdue', 'project', 'technology', 'programming', 'polytechnic', 'javascript', 'jquery', 'computer', 'boilermaker', 'college', 'lafayette', 'coding'];
+			let currentWord = '';
+			let guessedWord = [];
+			let maxAttempts = 6;
+			let attemptsLeft = maxAttempts;
+			let currentBodyPart = 0;
+			
+			function newGame() {
+				//reset variables
+				currentWord = getRandomWord();
+				guessedWord = Array(currentWord.length).fill('_');
+				attemptsLeft = maxAttempts;
+				currentBodyPart = 0;
+				
+				//hide body at start of game
+				const bodyParts = ['head', 'torso', 'leftArm', 'rightArm', 'leftLeg', 'rightLeg'];
+				bodyParts.forEach(part => $(`#${part}`).hide());
+				
+				//message box
+				$('#message').hide().css({
+					top: 0,
+					opacity: 0
+				});
+				
+				//display start of game
+				displayWord();
+				displayKeyboard();
+				displayAttemptsLeft();
+			}
+			
+			function getRandomWord() {
+				return words[Math.floor(Math.random() * words.length)];
+			}
+			
+			function displayWord() {
+				const $wordDisplay = $('#wordDisplay');
+				$wordDisplay.empty();
+				
+				for (let i = 0; i < guessedWord.length; i++) {
+					const $letterContainer = $('<span class="letter-container"></span>');
+					const $letter = $(`<span class="letter">${guessedWord[i]}</span>`);
+					
+					$letterContainer.append($letter);
+					$wordDisplay.append($letterContainer);
+				}
+			}
+			
+			$('#wordDisplay').on('mouseenter', '.letter-container', function () {
+				$(this).find('.letter').stop().animate({ top: '-=2px' }, 200);
+			});
+			
+			$('#wordDisplay').on('mouseleave', '.letter-container', function() {
+				$(this).find('.letter').stop().animate({ top: '+=2px' }, 200);
+			});
+			
+			function displayKeyboard() {
+				const $keyboard = $('#keyboard');
+				$keyboard.empty();
+				
+				for (let letter of 'qwertyuiopasdfghjklzxcvbnm') {
+					const $button = $('<button class="keyboard"></button>').text(letter);
+					$button.on('click', function () {
+						handleGuess(letter);
+					});
+					$keyboard.append($button);
+				}
+			}
+			
+			function displayAttemptsLeft() {
+				console.log(`display Attempts Left: ${attemptsLeft}`);
+				$('#attemptsLeft').text(`Attempts Left: ${attemptsLeft}`);
+			}
+			
+			function displayMessage(message) {
+				$('#message').text(message);
+				
+				const $newGameButton = $('</br></br><button id="newGameBtn">NEW GAME</button>');
+				$newGameButton.on('click', function() {
+					$('#message').hide();
+					$("#message").css("top","350px");
+					newGame();
+				});
+				
+				$('#message').append($newGameButton);
+				
+				//$('#message').show();
+			}
+			
+			function checkGuess(letter) {
+				let correctGuess = false;
+				
+				for(let i = 0; i < currentWord.length; i++) {
+					if (currentWord[i] === letter) {
+						guessedWord[i] = letter;
+						correctGuess = true;
+					}
+				}
+				
+				console.log(`correct Guess: ${correctGuess}`);
+				return correctGuess;
+			}
+			
+			function checkWin() {
+				return guessedWord.join('') === currentWord;
+			}
+			
+			function checkGameOver() {
+				return attemptsLeft === 0;
+			}
+			
+			function handleGuess(letter) {
+				if (checkGuess(letter)) {
+					displayWord();
+					
+					if (checkWin()) {
+						$('#message').show();
+						$('#message').css({top: 200, opacity: 0.5}).animate({
+							top: "-=10",
+							opacity: 1
+						}, {
+							duration: 800,
+						});
+						displayMessage(`You win! Play again?`);
+					}
+					else {
+						displayMessage(``);
+					}
+				}
+				else {
+					attemptsLeft--;
+					
+					displayAttemptsLeft();
+					displayBodyPart();
+					
+					if (checkGameOver()) {
+						//game over message fade in
+						$('#message').show();
+						$('#message').css({top: 200, opacity: 0.5}).animate({
+							top: "+=10",
+							opacity: 1
+						}, {
+							duration: 800,
+						});
+						displayMessage(`Game over! The word was ${currentWord}.`);
+						//animate down and fade in when game over, need to reset when new game
+						//animate up and fade in when game over, need to reset
+					}
+					else {
+						displayMessage(``);
+						$(`button:contains('${letter}')`).addClass('incorrect');
+					}
+				}
+			}
+			
+			let revealedBodyParts = 0;
+			
+			function displayBodyPart() {
+				const bodyParts = ['head', 'torso', 'leftArm', 'rightArm', 'leftLeg', 'rightLeg'];
+				
+				//check if there are more body parts to display
+				if (currentBodyPart < bodyParts.length) {
+					const $bodyPart = $(`#${bodyParts[currentBodyPart]}`);
+					$bodyPart.show();
+					currentBodyPart++;
+				}
+			}
+			
+			newGame();
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,404 @@
+html {
+	background: url("light.jpg") no-repeat;
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+}
+h1 {
+	position: absolute;
+	color: rgba(79,167,255,1);
+	width: 400px;
+	top: 50px;
+	left: 580px;
+	font-size: 70px;
+	text-align: center;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+}
+#stand {
+	width: 600px;
+	height: 650px;
+}
+#box {
+	position: absolute;
+	width: 400px;
+	height: 150px;
+	border: 5px solid rgba(135,73,19,1.00);
+	left: 100px;
+	top: 500px;
+}
+#pole {
+	position: absolute;
+	width: 175px;
+	height: 400px;
+	border-left: 5px solid rgba(135,73,19,1.00);
+	border-top: 5px solid rgba(135,73,19,1.00);
+	left: 150px;
+	top: 100px;
+}
+#string {
+	position: absolute;
+	width: 0px;
+	height: 60px;
+	border-left: 5px solid rgba(135,73,19,1.00);
+	left: 325px;
+	top: 100px;
+}
+.hidden {
+	display: none;
+}
+#head {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	border: 3px solid black;
+	border-radius: 50%;
+	left: 285px;
+	top: 160px;
+	display: none;
+}
+#torso {
+	position: absolute;
+	width: 0px;
+	height: 100px;
+	border-left: 3px solid black;
+	left: 325px;
+	top: 244px;
+	display: none;
+}
+#leftArm {
+	position: absolute;
+	width: 0px;
+	height: 70px;
+	border-left: 3px solid black;
+	left: 307px;
+	top: 260px;
+	rotate: 30deg;
+	display: none;
+}
+#rightArm {
+	position: absolute;
+	width: 0px;
+	height: 70px;
+	border-left: 3px solid black;
+	left: 343px;
+	top: 260px;
+	rotate: -30deg;
+	display: none;
+}
+#leftLeg {
+	position: absolute;
+	width: 0px;
+	height: 70px;
+	border-left: 3px solid black;
+	left: 307px;
+	top: 338px;
+	rotate: 30deg;
+	display: none;
+}
+#rightLeg {
+	position: absolute;
+	width: 0px;
+	height: 70px;
+	border-left: 3px solid black;
+	left: 343px;
+	top: 338px;
+	rotate: -30deg;
+	display: none;
+}
+#wordDisplay {
+	position: absolute;
+	font-size: 50px;
+	width: 550px;
+	text-align: center;
+	left: 510px;
+	top: 400px;
+	cursor: default;
+}
+#wordDisplay .letter-container {
+	display: inline-block;
+	margin-right: 5px;
+}
+#wordDisplay .letter {
+	display: inline-block;
+	transition: top 0.1s ease;
+}
+#wordDisplay .letter:hover {
+	position: relative;
+	top: -2px;
+}
+.keyboard {
+	font-size: 30px;
+	margin: 6px;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	padding: 1px;
+	border-radius: 7px;
+	background-color: rgba(254,255,124,0.20);
+	transition: background-color 0.5s;
+}
+#keyboard {
+	position: absolute;
+	text-align: center;
+	width: 550px;
+	left: 510px;
+	top: 500px;
+}
+.keyboard:hover {
+	background-color: rgba(254,255,124,1);
+}
+.keyboard.incorrect {
+	background-color: rgba(189,189,189,1.00);
+	cursor: not-allowed;
+}
+#message {
+	position: absolute;
+	margin: 10px;
+	background-color: rgba(79,167,255,0.80);
+	color: white;
+	border: 2px solid rgba(79,167,255,1);
+	border-radius: 10px;
+	width: 500px;
+	height: 200px;
+	left: 500px;
+	top: 200px;
+	text-align: center;
+	font-size: 40px;
+	padding: 30px;
+	justify-content: center;
+}
+#attemptsLeft {
+	position: absolute;
+	margin: 20px;
+	color: black;
+	height: 30px;
+	font-size: 30px;
+	left: 80px;
+	width: 400px;
+	top: 540px;
+	text-align: center;
+	transition: text-shadow 0.5s;
+}
+#attemptsLeft:hover {
+	text-shadow: 0 5px 5px rgba(0,0,0,0.2);
+}
+#newGameBtn {
+	cursor: pointer;
+	background-color: rgba(0,0,0,0);
+	border: 3px solid white;
+	border-radius: 15px;
+	color: white;
+	padding: 15px;
+	margin-top: 10px;
+	transition: background-color 0.5s, border 0.5s, color 0.5s;
+	font-size: 20px;
+}
+#newGameBtn:hover {
+	background-color: rgba(255,255,255,1);
+	border: 2px solid rgba(79,167,255,0.8);
+	color: rgba(79,167,255,1);
+}
+
+
+@media screen and (max-width: 750px) {
+h1 {
+	position: absolute;
+	color: rgba(79,167,255,1);
+	width: 400px;
+	top: 5px;
+	left: 180px;
+	font-size: 70px;
+	margin: 0px;
+	text-align: center;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";	}
+#stand {
+	width: 600px;
+	height: 650px;
+}
+#box {
+	position: absolute;
+	width: 250px;
+	height: 50px;
+	border: 5px solid rgba(135,73,19,1.00);
+	left: 250px;
+	top: 350px;
+}
+#pole {
+	position: absolute;
+	width: 115px;
+	height: 250px;
+	border-left: 5px solid rgba(135,73,19,1.00);
+	border-top: 5px solid rgba(135,73,19,1.00);
+	left: 280px;
+	top: 100px;
+}
+#string {
+	position: absolute;
+	width: 0px;
+	height: 60px;
+	border-left: 5px solid rgba(135,73,19,1.00);
+	left: 395px;
+	top: 100px;
+}
+.hidden {
+	display: none;
+}
+#head {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border: 3px solid black;
+	border-radius: 50%;
+	left: 370px;
+	top: 160px;
+	display: none;
+}
+#torso {
+	position: absolute;
+	width: 0px;
+	height: 50px;
+	border-left: 3px solid black;
+	left: 395px;
+	top: 214px;
+	display: none;
+}
+#leftArm {
+	position: absolute;
+	width: 0px;
+	height: 40px;
+	border-left: 3px solid black;
+	left: 385px;
+	top: 225px;
+	rotate: 30deg;
+	display: none;
+}
+#rightArm {
+	position: absolute;
+	width: 0px;
+	height: 40px;
+	border-left: 3px solid black;
+	left: 405px;
+	top: 225px;
+	rotate: -30deg;
+	display: none;
+}
+#leftLeg {
+	position: absolute;
+	width: 0px;
+	height: 40px;
+	border-left: 3px solid black;
+	left: 385px;
+	top: 260px;
+	rotate: 30deg;
+	display: none;
+}
+#rightLeg {
+	position: absolute;
+	width: 0px;
+	height: 40px;
+	border-left: 3px solid black;
+	left: 405px;
+	top: 260px;
+	rotate: -30deg;
+	display: none;
+}
+#wordDisplay {
+	position: absolute;
+	font-size: 50px;
+	width: 550px;
+	text-align: center;
+	left: 110px;
+	top: 450px;
+	cursor: default;
+}
+#wordDisplay .letter-container {
+	display: inline-block;
+	margin-right: 5px;
+}
+#wordDisplay .letter {
+	display: inline-block;
+	transition: top 0.1s ease;
+}
+#wordDisplay .letter:hover {
+	position: relative;
+	top: -2px;
+}
+.keyboard {
+	font-size: 30px;
+	margin: 6px;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	padding: 1px;
+	border-radius: 7px;
+	background-color: rgba(254,255,124,0.20);
+	transition: background-color 0.5s;
+}
+#keyboard {
+	position: absolute;
+	text-align: center;
+	width: 550px;
+	left: 110px;
+	top: 550px;
+}
+.keyboard:hover {
+	background-color: rgba(254,255,124,1);
+}
+.keyboard.incorrect {
+	background-color: rgba(189,189,189,1.00);
+	cursor: not-allowed;
+}
+#message {
+	position: absolute;
+	margin: 10px;
+	background-color: rgba(79,167,255,0.80);
+	color: white;
+	border: 2px solid rgba(79,167,255,1);
+	border-radius: 10px;
+	width: 500px;
+	height: 200px;
+	left: 80px;
+	top: 200px;
+	text-align: center;
+	font-size: 40px;
+	padding: 30px;
+	justify-content: center;
+}
+#attemptsLeft {
+	position: absolute;
+	margin: 20px;
+	color: black;
+	height: 30px;
+	font-size: 30px;
+	left: 160px;
+	width: 400px;
+	top: 343px;
+	text-align: center;
+	transition: text-shadow 0.5s;
+}
+#attemptsLeft:hover {
+	text-shadow: 0 5px 5px rgba(0,0,0,0.2);
+}
+#newGameBtn {
+	cursor: pointer;
+	background-color: rgba(0,0,0,0);
+	border: 3px solid white;
+	border-radius: 15px;
+	color: white;
+	padding: 15px;
+	margin-top: 10px;
+	transition: background-color 0.5s, border 0.5s, color 0.5s;
+	font-size: 20px;
+}
+#newGameBtn:hover {
+	background-color: rgba(255,255,255,1);
+	border: 2px solid rgba(79,167,255,0.8);
+	color: rgba(79,167,255,1);
+}
+}
+
+
+
+
+
+
