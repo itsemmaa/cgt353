@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<meta charset="utf-8"/>
+	<title>Gallery - House 5</title>
+	<link href="css/style.css" rel="stylesheet" media="screen"/>
+	<script src="js/jquery-3.7.1.min.js"></script>
+</head>
+	
+<body>
+	<div id="wrapper">
+		<div id="th25"></div>
+		<div id="th26"></div>
+		<div id="th27"></div>
+		<div id="th28"></div>
+		<div id="th29"></div>
+		<div id="th30"></div>
+	</div>
+	
+	<p1>Living Room</p1>
+	<p2>Kitchen</p2>
+	<p3>Dining Room</p3>
+	<p4>Bedroom</p4>
+	<p5>Bathroom</p5>
+	<p6>Office</p6>
+	
+	
+	<script type="text/javascript"><!--
+			$(document).ready(function() {
+			$("div").css("border-radius", "10px");
+			$("div[id!='wrapper']").animate({"opacity" : .6}).hover(function() {
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				$(this).animate({"opacity" : .6});
+			});
+		});
+	--></script>
+	
+</body>
+	
+</html>
