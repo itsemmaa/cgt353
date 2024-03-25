@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Fixed Side Bar</title>
+	<style type="text/css"><!--
+		body {
+			background-color: #cca;
+		}
+		#contactForm {
+			width: 400px;
+			height: 250px;
+			font-family: Verdana, Geneva, sans-serif;
+			font-size: 9pt;
+			font-weight: bold;
+			position: absolute;
+			top: 250px;
+			left: -400px;
+			background-color: rgb(50,50,50);
+			background-color: rgba(50,50,50,.99);
+			margin: 0px;
+			z-index: 110;
+		}
+		#contact span {
+			padding: 0px;
+			margin: 0px;
+			position: relative;
+			top: 2px;
+		}
+		#contact {
+			font-family: Verdana, Geneva, sans-serif;
+			font-size: 9pt;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 17px;
+			padding-bottom: 0px;
+			padding-left: 3px;
+			padding-right: 3px;
+			position: absolute;
+			top: 350px;
+			left: -42px;
+			border-radius: 10px;
+			background-color: rgb(177,148,108);
+			background-color: rgba(177,148,108,.75);
+			width: 90px;
+			height: 25px;
+			margin: 0px;
+			z-index: 100;
+		}
+		#contact:hover, #contact:focus {
+			background-color: rgb(177,148,108);
+			background-color: rgba(177,148,108,.90);
+			cursor: pointer;
+		}
+		#contact.fixed, #contactForm.fixed {
+			position: fixed;
+		}
+		.rotate {
+			-moz-transform: rotate(-90deg);    /* Firefox*/
+			-webkit-transform: rotate(-90deg); /* Chrome, Safari */
+			-ms-transform: rotate(-90deg);     /* Microsoft */
+			-o-transform: rotate(-90deg);      /* Opera */
+			filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* Internet Explorer */
+		}
+		#dropdown {
+			position: absolute;
+			top: -150px;
+			left: 500px;
+			background-color: #ffffff;
+			padding: 20px;
+			border: 1px solid #000000;
+			z-index: 75;
+		}
+		#dropdown.fixed {
+			position: fixed;
+		}
+		#content1, #content2, #content3, #content4, #content5 {
+			position: absolute;
+			border-radius: 15px;
+			background-color: #a3a3a3;
+			width: 600px;
+			height: 300px;
+			overflow: hidden;
+			z-index: 1;
+		}
+		#content1 {
+			top: 100px;
+			left: 25px;
+		}
+		#content2 {
+			top: 100px;
+			left: 660px;
+		}
+		#content3 {
+			top: 425px;
+			left: 25px;
+		}
+		#content4 {
+			top: 425px;
+			left: 660px;
+		}
+		#content5 {
+			top: 750px;
+			left: 25px;
+			height: 700px;
+		}
+	--></style>
+	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+</head>
+	
+<body>
+	<div id="dropdown">
+	Place Ad Content Here<br/><br/>
+	Will you take our quick survey?<br/><br/>
+	<a href="#" id="closeAd">Close</a>
+	</div>
+	
+<!-- Contact me fixed flyout div -->
+	<div id="contact"><span>Contact Me</span></div>
+	<div id="contactForm">
+		<div id="contactClose" style="position:relative; text-align:center; width:15px; left:375px; top:5px; border:1px solid #dddddd; padding:1px; color:#dddddd; cursor:pointer;">X</div>
+		<div id="contactAddress" style="position:relative; width:325px; left:45px; top:5px; padding:1px; color:#dddddd;">
+			Emma Barnett<br/>&nbsp;<br/>
+			barnetem@purdue.edu<br/>&nbsp;<br/>
+			Purdue University<br/>
+			West Lafayette, IN 47907
+		</div>
+	</div>
+<!---->
+	
+	<h3>Assign04 - Fixed Side Bar, Flyout, and Ad Drop Down</h3>
+	<p>
+		<a href="fixed.html">Fixed Part 1</a> |
+		<a href="fixedPart2.html">Fixed Part 2</a> |
+		<a href="movingAd.html">Moving Ad</a> |
+		<a href="movingBall.html">Moving Ball</a> |
+		<a href="bouncingBall.html">Bouncing Balls</a> |
+	</p>
+	
+	<!-- Javascript -->
+<script type="text/javascript"><!--
+	$(document).ready(function() {
+		$("#contact").addClass("rotate");       //rotate the text
+		$(window).scroll(function(event) {      //when the window scrolls, prevent contact div from scrolling
+			$("#contact").addClass("fixed");    //add fixed class to contact div
+		}); //end scroll
+		
+		$("#dropdown").animate({                //drop the dropdown div down onto screen
+			top:"+=400"
+		}, 2000);
+		
+		$("#dropdown").addClass("fixed");
+		
+		$("#closeAd").click(function(event){    //close dropdown div
+			event.preventDefault();             //prevent the default functionality
+			
+			$("#dropdown").css("top","-150px"); //move the dropdown back off the screen
+		}); //end <a> click
+		
+		///// contact me fixed side bar /////
+		
+		var isShowing = 1;                  //variable to know if div is showing on page
+		
+		$("#contact").addClass("rotate");   //rotate the div using CSS class rotate
+		
+		var ie = $.browser == "msie" && $.browser.version < 7;
+		
+		if(!ie){ // exclude really old browsers
+			$(window).scroll(function(event){
+				$("#contact").addClass("fixed");
+			}); //end scroll
+		}       //end if
+		
+		//when contact me is clicked
+		$("#contact").click(function(e){
+			//e.preventionDefault();
+			
+			if(isShowing%2) {
+				//executes every time isShowing is an odd number; bring div onto screen, into view
+				$("#contact").animate({
+					left:"+=400"
+				}, 700);
+				$("#contactForm").animate({
+					left:"+=400"
+				}, 700);
+				
+				$("#contact").addClass("fixed");
+				$("#contactForm").addClass("fixed");
+				
+				$("#contact").css("background-color","rgba(177,148,108,.95)");
+				
+				isShowing++; //add 1 to isShowing: isShowing = isShowing + 1
+			}
+			else {
+				//executes every timeisShowing is an even number; move off screen
+				$("#contact").animate({
+					left:"-=400"
+				}, 700);
+				$("#contactForm").animate({
+					left:"-=400"
+				}, 700);
+				
+				$("#contact").css("background-color","rgba(177,148,108,.75)");
+				
+				isShowing++;
+			} //end if else for the modulus operator
+		}); //end contact click
+		
+		//when the X is clicked
+		$("#contactClose").click(function(e){
+			e.preventDefault();
+			
+			$("#contact").animate({
+				left:"-=400"
+			}, 700);
+			$("#contactForm").animate({
+				left:"-=400"
+			}, 700);
+			
+			$("#contact").css("background-color","rgba(177,148,108,.75)");
+			
+			isShowing++;
+		}); //end close X click
+		
+		// end contact me fixed side bar //
+	});
+--></script>
+	<!---->
+	
+<div id="content1">
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis nibh luctus lacus aliquam, sit amet convallis lectus rhoncus. Nulla molestie iaculis felis vel finibus. Morbi varius tortor sed erat interdum accumsan. Cras imperdiet, elit id porta laoreet, quam nisi porta arcu, vehicula gravida nulla arcu id ipsum. Vivamus suscipit arcu nec arcu iaculis, sed dictum ante dignissim. Suspendisse potenti. Morbi a pharetra ligula, id luctus justo. Nam quis velit quis purus lobortis molestie. Fusce sapien ipsum, scelerisque et augue in, mattis aliquet odio. Phasellus elementum justo eu tempor accumsan. Fusce eros nunc, rutrum sed pulvinar et, elementum et augue. Nulla ac finibus turpis. Nam nisl nulla, blandit nec ligula eget, ullamcorper suscipit ligula. Nulla mollis ut est in commodo. Nullam interdum dapibus pulvinar.</p>
+</div>
+<div id="content2">
+	<p>In fringilla libero neque, vel volutpat ligula ultrices ut. Praesent ut accumsan lacus. In finibus, nulla quis volutpat convallis, felis lorem hendrerit sapien, ac ullamcorper arcu orci eu turpis. Suspendisse in lorem orci. Maecenas in tempus ipsum, vitae dignissim massa. Nam consequat purus ut sapien fringilla porttitor. In id vehicula ligula, in gravida velit. Proin sed nisl mauris. Vivamus lacus risus, congue sit amet massa dapibus, malesuada dapibus nibh. Proin facilisis dui at fermentum hendrerit. Nam lobortis velit ligula, sit amet fringilla massa eleifend quis.</p>
+</div>
+<div id="content3">
+	<p>Pellentesque condimentum, turpis et vehicula accumsan, orci nibh tincidunt neque, non mattis nibh diam in est. In id erat quis elit tempus volutpat. Vivamus aliquet est eget arcu varius lacinia. Pellentesque ante diam, ultrices eu mauris et, feugiat elementum magna. Quisque maximus tincidunt dolor. Quisque scelerisque pellentesque diam, viverra molestie diam vestibulum non. Nulla et scelerisque dolor, eget congue neque. Curabitur vitae enim vel est consequat suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque dolor nisl, efficitur quis malesuada eget, elementum at nisi. Integer imperdiet tortor ac dui aliquet, eu gravida elit mattis. Pellentesque justo tortor, luctus in cursus ut, volutpat nec metus. Duis volutpat convallis libero, et aliquam leo condimentum in. Suspendisse potenti. Pellentesque gravida quis nunc et faucibus. Morbi rutrum porttitor purus, non faucibus est convallis rhoncus.</p>
+</div>
+<div id="content4">
+	<p>Duis porta sem sit amet tellus mattis, nec eleifend lorem pulvinar. Nunc eget mi ultrices, convallis diam vel, pretium leo. Morbi eget magna mattis, pretium felis ullamcorper, porta ipsum. Nulla rhoncus metus et purus ullamcorper dignissim. Cras ac aliquam nisi. Fusce aliquet odio non iaculis dictum. Cras hendrerit lobortis pellentesque. Nullam mollis ante quis ligula dictum, nec suscipit ante auctor. Duis sed nibh placerat, fringilla neque eu, interdum eros. Integer laoreet consequat odio. Pellentesque sagittis efficitur viverra. Quisque est est, fringilla nec interdum eu, gravida sed tellus. Donec fringilla a elit sed fringilla.</p>
+</div>
+<div id="content5">
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+	<p>asdfasdf</p>
+</div>
+</body>
+</html>
